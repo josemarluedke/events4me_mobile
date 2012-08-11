@@ -1,8 +1,9 @@
 ApplicationWindow = ->
 
-	UI = require "ui/Components"
+	UI = require "/ui/Components"
+	WinEvents = require "/ui/WinEvents"
 
-	self = UI.createWindow()
+	self = new WinEvents()
 
 	self
 

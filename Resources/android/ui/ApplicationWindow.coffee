@@ -1,6 +1,6 @@
 ApplicationWindow = ->
 
-	UI = require "ui/Components"
+	UI = require "/ui/Components"
 
 	self = UI.createWindow()
 
