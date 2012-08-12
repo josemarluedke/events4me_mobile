@@ -10,7 +10,7 @@ Window = ->
 
 
 	self = UI.createWindow
-		title: "me"
+		titleid: "profile"
 
 	# Create TableView HeaderView
 	headerView = Ti.UI.createView
@@ -49,9 +49,8 @@ Window = ->
 		headerView: headerView
 	self.add tableView
 
+	# Add ProgressView to Window
 	self.add progressView
-	progressView.show()
-
 
 	# Methods
 	getDataFromLocal = ->
@@ -114,7 +113,7 @@ Window = ->
 		tableView.setData [sectionSettings]
 
 		# Hide ProgressView
-		progressView.hide()
+		progressView._hide()
 
 
 	# Events handler
