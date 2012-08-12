@@ -2,15 +2,41 @@
 gradientColor = undefined
 isAndroid = if Ti.Platform.osname == "android" then true else false
 
+
+# TabGroup
+exports.createTabGroup = (dict) ->
+	
+	defaults = 
+		backgroundColor: "#FFFFFF"
+
+	tabGroup = Ti.UI.createTabGroup applyConfig dict, defaults
+
+
+# Tab
+exports.createTab = (dict) ->
+	
+	defaults = 
+		backgroundColor: "#FFFFFF"
+
+	tab = Ti.UI.createTab applyConfig dict, defaults
+
+
 # Window
 exports.createWindow = (dict) ->
 	
 	defaults = 
 		backgroundColor: "#FFFFFF"
 		barColor: gradientColor
-		navBarHidden: if isAndroid then true else false
 
 	window = Ti.UI.createWindow applyConfig dict, defaults
+
+
+# NavigationGroup
+exports.createNavigationGroup = (dict) ->
+
+	defaults = {}
+
+	nav = Ti.UI.iPhone.createNavigationGroup applyConfig dict, defaults
 
 
 # TableView
@@ -29,6 +55,16 @@ exports.createButton = (dict) ->
 		backgroundColor: "#FFFFFF"
 
 	button = Ti.UI.createButton applyConfig dict, defaults
+
+
+
+# TableViewEventRow
+exports.createTableViewEventRow = (dict) ->
+
+	self = Ti.UI.createTableViewRow
+		title: dict.name
+
+	self
 
 
 # CoffeeScript extends
