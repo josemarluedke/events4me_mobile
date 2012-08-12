@@ -2,6 +2,7 @@ Login = (type) ->
 
 	UI = require "/ui/Components"
 	URL = require "/lib/URL"
+	User = require "/lib/User"
 
 	self = UI.createWindow()
 	parameterAccessToken = "auth_token"
@@ -19,6 +20,7 @@ Login = (type) ->
 		if url.indexOf(parameterAccessToken) != -1
 			indexOfToken = url.indexOf(parameterAccessToken) + parameterAccessToken.length
 			token = url.substr(indexOfToken + 1)
+			User.setAuthToken token
 			Ti.API.info "TOKEN: #{token}"
 
 	self
