@@ -3,6 +3,7 @@ ApplicationWindow = ->
 	UI = require "/ui/Components"
 	User = require "/lib/User"
 	WinEvents = require "/ui/WinEvents"
+	WinProfile = require "/ui/WinProfile"
 
 	self = UI.createTabGroup()
 
@@ -23,7 +24,7 @@ ApplicationWindow = ->
 	self.addTab tabMyEvents
 
 	# Profile
-	winProfile = new WinEvents()
+	winProfile = new WinProfile()
 	tabProfile = UI.createTab
 		titleid: "profile"
 		window: winProfile
