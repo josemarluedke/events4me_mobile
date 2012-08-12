@@ -42,8 +42,7 @@ exports.createNavigationGroup = (dict) ->
 # TableView
 exports.createTableView = (dict) ->
 
-	defaults = 
-		backgroundColor: "#FFFFFF"
+	defaults = {}
 
 	tableView = Ti.UI.createTableView applyConfig dict, defaults
 
