@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-	<string name="fuubar">fuubar</string>
+	<string name="signup">Criar conta</string>
+	<string name="events">Eventos</string>
+	<string name="my_events">Meus eventos</string>
+	<string name="profile">Perfil</string>
 </resources>
