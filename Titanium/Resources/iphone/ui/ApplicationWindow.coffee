@@ -8,27 +8,27 @@ ApplicationWindow = ->
 	self = UI.createTabGroup()
 
 	# Events
-	winEvents = new WinEvents()
 	tabEvents = UI.createTab
 		titleid: "events"
-		window: winEvents
-	winEvents.currentTab = tabEvents
+	winEvents = new WinEvents
+		tab: tabEvents
+	tabEvents.window = winEvents
 	self.addTab tabEvents
 
 	# My Events
-	winMyEvents = new WinEvents()
 	tabMyEvents = UI.createTab
 		titleid: "my_events"
-		window: winMyEvents
-	winMyEvents.currentTab = tabMyEvents
+	winMyEvents = new WinEvents
+		tab: tabMyEvents
+	tabMyEvents.window = winMyEvents
 	self.addTab tabMyEvents
 
 	# Profile
-	winProfile = new WinProfile()
 	tabProfile = UI.createTab
 		titleid: "profile"
-		window: winProfile
-	winProfile.currentTab = tabProfile
+	winProfile = new WinProfile
+		tab: tabProfile
+	tabProfile.window = winProfile
 	self.addTab tabProfile
 
 	# Events handler
