@@ -1,23 +1,41 @@
 Window = ->
 
 	UI = require "/ui/Components"
-	User = require "/lib/User"
+
+	rows = []
 
 	self = UI.createWindow
 		title: "events"
 
+
+	tableView = UI.createTableView()
+	self.add tableView
+
+
+	# Methods
+	getDataFromLocal = ->
+		events = Ti.App.Properties.getList "events"
+		showDataInTableView events
+
+
+	getData = ->
+		getDataFromLocal()
+
+
+	showDataInTableView = (data) ->
+		rows = []
+
+		for _event in data
+			do (_event) ->
+				rows.push UI.createTableViewEventRow _event
+
+		tableView.setData rows
+
+
 	# Events handler
 	self.addEventListener "open", ->
+		getData()
 
-		if User.isLogged()
-			Ti.API.info "User is logged"
-			# TODO: User is logged in
-
-		else
-			Ti.API.info "User is not logged"
-			WinSignup = require "/ui/WinSignup"
-			winSignup = new WinSignup()
-			winSignup.open()
 
 	self
 
