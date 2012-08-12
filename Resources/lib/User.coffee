@@ -4,6 +4,6 @@ authTokenProperty = "auth_token"
 exports.isLogged = ->
 	Ti.App.Properties.hasProperty authTokenProperty
 
-# Verify if user is logged in the Application
+# Get the AuthToken of user
 exports.getAuthToken = ->
-	Ti.App.Properties.hasProperty authTokenProperty
+	Ti.App.Properties.getString authTokenProperty
