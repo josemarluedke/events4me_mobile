@@ -42,11 +42,11 @@ Window = ->
 	# Events handler
 	buttonSignIn.addEventListener "click", ->
 		Auth = require "/lib/Auth"
-		nav.open new Auth("sign_in")
+		nav.open new Auth(self, "sign_in")
 
 	buttonSignUp.addEventListener "click", ->
 		Auth = require "/lib/Auth"
-		nav.open new Auth("sign_up")
+		nav.open new Auth(self, "sign_up")
 
 	closeWindow.addEventListener "click", ->
 		self.close()
