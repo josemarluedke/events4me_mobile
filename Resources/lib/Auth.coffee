@@ -8,7 +8,7 @@ Login = (type) ->
 
 	# WebView
 	webView = Ti.UI.createWebView
-		url: URL[type]
+		url: URL.getURL type
 	self.add webView
 
 	# Events handler
@@ -19,6 +19,7 @@ Login = (type) ->
 		if url.indexOf(parameterAccessToken) != -1
 			indexOfToken = url.indexOf(parameterAccessToken) + parameterAccessToken.length
 			token = url.substr(indexOfToken + 1)
+			Ti.API.info "TOKEN: #{token}"
 
 	self
 
