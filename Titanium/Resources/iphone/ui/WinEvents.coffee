@@ -1,13 +1,17 @@
-Window = ->
+Window = (dict) ->
 
 	UI = require "/ui/Components"
 	URL = require "/lib/URL"
+	User = require "/lib/User"
+	ProgressView = require "/lib/ProgressView"
 
 	rows = []
+	rowSelectedIndex = null
 	Properties = Ti.App.Properties
+	progressView = new ProgressView()
 
 	self = UI.createWindow
-		title: "events"
+		titleid: "events"
 
 
 	searchBar = UI.createSearchBar
@@ -18,6 +22,8 @@ Window = ->
 		top: 44
 	self.add tableView
 
+	# Add ProgressView to Window
+	self.add progressView
 
 	# Methods
 	getDataFromLocal = ->
@@ -27,6 +33,7 @@ Window = ->
 
 	getDataFromWS = ->
 		xhr = Ti.Network.createHTTPClient
+			timeout: 10000
 			onerror: ->
 				getDataFromLocal()
 			oncancel: ->
@@ -57,11 +64,33 @@ Window = ->
 
 		tableView.setData rows
 
+		# Hide ProgressView
+		progressView._hide()
+
+
+	tableView.addEventListener "click", (e) ->
+
+		# Select row
+		rowSelectedIndex = e.index
+		tableView.selectRow(e.index, { animated : false })
+
+		# Open Window
+		event_obj = e.rowData.event_obj
+
+		WinDetailEvent = require "/ui/WinDetailEvent"
+		winDetailEvent = new WinDetailEvent(event_obj)
+		dict.tab.open winDetailEvent
 
 	# Events handler
-	self.addEventListener "open", ->
-		getData()
+	self.addEventListener "focus", ->
+		
+		if User.isLogged() and rows.length == 0
+			getData()
 
+		setTimeout ->
+			if rowSelectedIndex != null
+				tableView.deselectRow(rowSelectedIndex, { duration: 150 })
+		, 10
 
 	self
 
