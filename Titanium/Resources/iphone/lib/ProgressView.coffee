@@ -17,6 +17,8 @@ class ProgressView
 
 	createProgressView: ->
 	
+		self = @
+
 		# Full View
 		@progressView = Ti.UI.createView
 			visible: true
@@ -45,13 +47,17 @@ class ProgressView
 
 		@progressView.add activityIndicatorView
 
+		@progressView._show = ->
+			@progressView.setVisible true
+
+		@progressView._hide = ->
+			self.progressView.animate { opacity: 0, duration: 300 }
+
+			setTimeout ->
+				self.progressView.setVisible false
+			, 350
+
 		return @progressView
-
-	show: ->
-		@progressView.setVisible true
-
-	hide: ->
-		@progressView.setVisible false
 
 
 module.exports = ProgressView
