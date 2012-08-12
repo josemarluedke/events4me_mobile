@@ -21,7 +21,6 @@ Login = (type) ->
 			indexOfToken = url.indexOf(parameterAccessToken) + parameterAccessToken.length
 			token = url.substr(indexOfToken + 1)
 			User.setAuthToken token
-			Ti.API.info "TOKEN: #{token}"
 
 	self
 
