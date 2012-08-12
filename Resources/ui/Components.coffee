@@ -47,6 +47,29 @@ exports.createTableView = (dict) ->
 	tableView = Ti.UI.createTableView applyConfig dict, defaults
 
 
+# SearchBar
+exports.createSearchBar = (dict) ->
+
+	defaults =
+		barColor: gradientColor
+		height: 44
+		top: 0
+
+	searchBar = Ti.UI.createSearchBar applyConfig dict, defaults
+
+	# Events handler
+	searchBar.addEventListener "focus", ->
+		@showCancel = true
+
+	searchBar.addEventListener "blur", ->
+		@showCancel = false
+
+	searchBar.addEventListener "cancel", ->
+		@blur()
+		@showCancel = false
+
+	searchBar
+
 # Button
 exports.createButton = (dict) ->
 
@@ -61,7 +84,30 @@ exports.createButton = (dict) ->
 exports.createTableViewEventRow = (dict) ->
 
 	self = Ti.UI.createTableViewRow
-		title: dict.name
+		height: Ti.UI.SIZE
+		hasChild: true
+
+	content = Ti.UI.createView
+		height: Ti.UI.SIZE
+		layout: "vertical"
+		top: 5
+		bottom: 10
+	self.add content
+
+	content.add Ti.UI.createLabel
+		text: dict.name
+		font: { fontSize: 18, fontWeight: "bold" }
+		left: 5
+		top: 5
+		right: 5
+
+	content.add Ti.UI.createLabel
+		text: dict.description
+		font: { fontSize: 14 }
+		color: "#666666"
+		left: 5
+		top: 5
+		right: 5
 
 	self
 
