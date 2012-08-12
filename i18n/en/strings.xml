@@ -4,4 +4,6 @@
 	<string name="events">Events</string>
 	<string name="my_events">My Events</string>
 	<string name="profile">Profile</string>
+	<string name="sign_up">I don't have user yet</string>
+	<string name="sign_in">I already have an account</string>
 </resources>
