@@ -4,6 +4,7 @@ Login = (type) ->
 	URL = require "/lib/URL"
 
 	self = UI.createWindow()
+	parameterAccessToken = "auth_token"
 
 	# WebView
 	webView = Ti.UI.createWebView
@@ -12,7 +13,12 @@ Login = (type) ->
 
 	# Events handler
 	webView.addEventListener "beforeload", (e) ->
-		Ti.API.info e.url
+		
+		url = e.url
+
+		if url.indexOf(parameterAccessToken) != -1
+			indexOfToken = url.indexOf(parameterAccessToken) + parameterAccessToken.length
+			token = url.substr(indexOfToken + 1)
 
 	self
 
