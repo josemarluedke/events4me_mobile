@@ -59,14 +59,14 @@ exports.createSearchBar = (dict) ->
 
 	# Events handler
 	searchBar.addEventListener "focus", ->
-		@showCancel = true
+		@setShowCancel true, { animated: true }
 
 	searchBar.addEventListener "blur", ->
-		@showCancel = false
+		@setShowCancel false, { animated: true }
 
 	searchBar.addEventListener "cancel", ->
 		@blur()
-		@showCancel = false
+		@setShowCancel false, { animated: true }
 
 	searchBar
 
@@ -84,6 +84,7 @@ exports.createButton = (dict) ->
 exports.createTableViewEventRow = (dict) ->
 
 	self = Ti.UI.createTableViewRow
+		event_obj: dict
 		height: Ti.UI.SIZE
 		hasChild: true
 
@@ -97,17 +98,19 @@ exports.createTableViewEventRow = (dict) ->
 	content.add Ti.UI.createLabel
 		text: dict.name
 		font: { fontSize: 18, fontWeight: "bold" }
-		left: 5
+		left: 10
 		top: 5
 		right: 5
+		highlightedColor: "#FFFFFF"
 
 	content.add Ti.UI.createLabel
 		text: dict.description
 		font: { fontSize: 14 }
 		color: "#666666"
-		left: 5
+		left: 10
 		top: 5
 		right: 5
+		highlightedColor: "#FFFFFF"
 
 	self
 
