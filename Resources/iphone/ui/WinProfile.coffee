@@ -8,9 +8,9 @@ Window = ->
 	rows = []
 	progressView = new ProgressView()
 
+
 	self = UI.createWindow
 		title: "me"
-
 
 	# Create TableView HeaderView
 	headerView = Ti.UI.createView
@@ -29,6 +29,8 @@ Window = ->
 		left: 70
 		right: 10
 		top: 20
+		shadowColor: "#FFFFFF"
+		shadowOffset: { x: 0, y: 1}
 		font: { fontSize: 18, fontWeight: "bold" }
 	headerView.add labelNameProfile
 
@@ -37,6 +39,8 @@ Window = ->
 		left: 70
 		right: 10
 		top: 43
+		shadowColor: "#FFFFFF"
+		shadowOffset: { x: 0, y: 1}
 		font: { fontSize: 14 }
 	headerView.add labelEmailProfile
 
@@ -57,6 +61,10 @@ Window = ->
 
 	getDataFromWS = ->
 		xhr = Ti.Network.createHTTPClient
+			onerror: ->
+				getDataFromLocal()
+			oncancel: ->
+				getDataFromLocal()
 			onload: ->
 				profile = JSON.parse this.responseText
 				Properties.setString "me", JSON.stringify profile
@@ -84,6 +92,28 @@ Window = ->
 		labelNameProfile.setText me.name
 		labelEmailProfile.setText me.email
 
+		sectionSettings = Ti.UI.createTableViewSection
+			headerTitle: L("settings")
+
+		# Push Notification
+		pushNotificationTableViewRow = Ti.UI.createTableViewRow
+			height: 44
+
+		pushNotificationTableViewRow.add Ti.UI.createLabel
+			textid: "receive_notifications"
+			left: 10
+			font: { fontSize: 16 }
+
+		switchPushNotification = Ti.UI.createSwitch
+			value: false
+			right: 10
+		pushNotificationTableViewRow.add switchPushNotification
+		sectionSettings.add pushNotificationTableViewRow
+
+		# Set TableView data
+		tableView.setData [sectionSettings]
+
+		# Hide ProgressView
 		progressView.hide()
 
 
