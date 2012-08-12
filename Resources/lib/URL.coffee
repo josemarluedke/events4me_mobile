@@ -7,6 +7,7 @@ URL =
 	sign_in: "#{host}/users/sign_in"
 	sign_up: "#{host}/users/sign_up"
 	me: "#{host}/me#{extension}"
+	events: "#{host}/events#{extension}"
 
 
 exports.getURL = (url) ->
