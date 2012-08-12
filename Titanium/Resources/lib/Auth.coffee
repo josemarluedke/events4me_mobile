@@ -1,4 +1,4 @@
-Login = (type) ->
+Login = (parent, type) ->
 
 	UI = require "/ui/Components"
 	URL = require "/lib/URL"
@@ -21,6 +21,8 @@ Login = (type) ->
 			indexOfToken = url.indexOf(parameterAccessToken) + parameterAccessToken.length
 			token = url.substr(indexOfToken + 1)
 			User.setAuthToken token
+
+			parent.close()
 
 	self
 
