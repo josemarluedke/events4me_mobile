@@ -6,4 +6,7 @@
 	<string name="profile">Perfil</string>
 	<string name="sign_up">Cadastrar novo usuário</string>
 	<string name="sign_in">Já tenho uma conta</string>
+	<string name="settings">Configurações</string>
+	<string name="receive_notifications">Receber notificações</string>
+	<string name="search_event">Busque por algum evento</string>
 </resources>
