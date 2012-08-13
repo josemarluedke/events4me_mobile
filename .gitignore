@@ -2,3 +2,5 @@
 *.js
 build
 tmp
+/WindowsPhone/events4me.sln.docstates.suo
+/WindowsPhone/events4me.suo
