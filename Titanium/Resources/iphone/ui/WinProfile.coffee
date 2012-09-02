@@ -109,7 +109,7 @@ Window = ->
 			font: { fontSize: 16 }
 
 		switchPushNotification = Ti.UI.createSwitch
-			value: false
+			value: me.push
 			right: 10
 		pushNotificationTableViewRow.add switchPushNotification
 		sectionSettings.add pushNotificationTableViewRow
