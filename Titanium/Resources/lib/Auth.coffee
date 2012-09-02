@@ -21,9 +21,9 @@ Login = (parent, type) ->
 		if url.indexOf('https://www.facebook.com') != -1
 			webView.setUrl url.replace('https://www.', 'https://m.')
 
-		if url.indexOf(parameterAccessToken) != -1
-			indexOfToken = url.indexOf(parameterAccessToken) + parameterAccessToken.length
-			token = url.substr(indexOfToken + 1)
+		match = url.match /events4me\.in\/(?!.*twitter|facebook).+auth_token=([^&]+)/
+		if match?.length == 2
+			token = match[1]
 			User.setAuthToken token
 
 			parent.close()
