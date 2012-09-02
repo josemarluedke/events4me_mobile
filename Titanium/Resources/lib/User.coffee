@@ -11,3 +11,7 @@ exports.getAuthToken = ->
 # Set user AuthToken
 exports.setAuthToken = (value) ->
 	Ti.App.Properties.setString authTokenProperty, value
+
+# Remove user AuthToken
+exports.removeAuthToken = ->
+	Ti.App.Properties.removeProperty authTokenProperty

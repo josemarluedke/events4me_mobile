@@ -2,15 +2,20 @@ Window = ->
 
 	UI = require "/ui/Components"
 	URL = require "/lib/URL"
+	User = require "/lib/User"
 	ProgressView = require "/lib/ProgressView"
 	Properties = Ti.App.Properties
 
 	rows = []
 	progressView = new ProgressView()
 
+	logoutButton = Ti.UI.createButton
+		title: L('sign_out')
+		enabled: true
 
 	self = UI.createWindow
 		titleid: "profile"
+		rightNavButton: logoutButton
 
 	# Create TableView HeaderView
 	headerView = Ti.UI.createView
@@ -119,6 +124,14 @@ Window = ->
 	# Events handler
 	self.addEventListener "open", ->
 		getData()
+
+	logoutButton.addEventListener "click", ->
+		User.removeAuthToken()
+		if !User.isLogged()
+
+			WinAuth = require "/ui/WinAuth"
+			winAuth = new WinAuth()
+			winAuth.open()
 
 
 	self

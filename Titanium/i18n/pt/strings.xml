@@ -9,4 +9,5 @@
 	<string name="settings">Configurações</string>
 	<string name="receive_notifications">Receber notificações</string>
 	<string name="search_event">Busque por algum evento</string>
+	<string name="sign_out">Sair</string>
 </resources>
