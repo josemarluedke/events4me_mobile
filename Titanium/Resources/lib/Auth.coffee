@@ -17,6 +17,10 @@ Login = (parent, type) ->
 		
 		url = e.url
 
+		# User mobile version of facebook login page
+		if url.indexOf('https://www.facebook.com') != -1
+			webView.setUrl url.replace('https://www.', 'https://m.')
+
 		if url.indexOf(parameterAccessToken) != -1
 			indexOfToken = url.indexOf(parameterAccessToken) + parameterAccessToken.length
 			token = url.substr(indexOfToken + 1)
